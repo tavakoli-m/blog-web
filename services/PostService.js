@@ -9,7 +9,7 @@ export const GetPost = (ID) => {
 };
 
 export const CreatePost = (postData) => {
-  return Http.post(`/post/`, postData);
+  return Http.post(`/post/create`, postData);
 };
 
 export const UpdatePost = (ID, postData) => {
