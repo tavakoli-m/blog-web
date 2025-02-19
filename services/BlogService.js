@@ -9,7 +9,7 @@ export const GetCategory = (ID) => {
 };
 
 export const CreateCategory = (categoryData) => {
-  return Http.post(`/category/`, categoryData);
+  return Http.post(`/category/create`, categoryData);
 };
 
 export const UpdateCategory = (ID, categoryData) => {
