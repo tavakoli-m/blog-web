@@ -1,12 +1,13 @@
 "use client";
 
+import { useAuth } from "@/context/AuthProvider";
 import { LoginUser } from "@/services/AuthService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Login = () => {
-
-    const router = useRouter()
+  const router = useRouter();
+  const { refetch } = useAuth();
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -14,13 +15,14 @@ const Login = () => {
   });
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    const result = await LoginUser(inputs)
+    event.preventDefault();
+    const result = await LoginUser(inputs);
 
-    if(result.status === 200){
-        router.push('/')
+    if (result.status === 200) {
+      refetch();
+      router.push("/");
     }
-  }
+  };
 
   return (
     <>
@@ -32,7 +34,6 @@ const Login = () => {
                 Login To account
               </h1>
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-
                 <div>
                   <label
                     htmlFor="email"

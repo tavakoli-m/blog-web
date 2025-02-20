@@ -1,12 +1,13 @@
 "use client";
 
+import { useAuth } from "@/context/AuthProvider";
 import { RegisterUser } from "@/services/AuthService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Register = () => {
-
-    const router = useRouter()
+  const router = useRouter();
+  const { refetch } = useAuth()
 
   const [inputs, setInputs] = useState({
     name: "",
@@ -15,13 +16,14 @@ const Register = () => {
   });
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    const result = await RegisterUser(inputs)
+    event.preventDefault();
+    const result = await RegisterUser(inputs);
 
-    if(result.status === 200){
-        router.push('/')
+    if (result.status === 200) {
+      refetch();
+      router.push("/");
     }
-  }
+  };
 
   return (
     <>
