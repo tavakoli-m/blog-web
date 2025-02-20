@@ -6,7 +6,7 @@ export async function generateMetadata({ params }) {
     const ID = (await params).id;
     const category = await GetCategory(ID)
     return {
-      title: `مقاله های دسته بندی ${category.name}`,
+      title: `مقاله های دسته بندی ${category?.data?.name}`,
     }
   }
 
